@@ -35,12 +35,12 @@ class HomeController extends Controller {
     }
 
     public function faq() {
-        $faq = FAQ::paginate(10);
+        $faq = FAQ::paginate(9);
         return view('front.faq', compact('faq'));
     }
 
     public function searchFaq() {
-        $faq = FAQ::where('question', 'like', '%' . request('search') . '%')->orWhere('answer', 'like', '%' . request('search') . '%')->get();
+        $faq = FAQ::where('question', 'like', '%' . request('search') . '%')->orWhere('answer', 'like', '%' . request('search') . '%')->paginate(9);
         return view('front.faq', compact('faq'));
     }
 
